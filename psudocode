@@ -4,9 +4,12 @@
 每個威脅點包含資料(Xi,Yi)座標，Pi威脅程度，Ri威脅半徑
 飛機位置(x,y)與威脅點(Xi,Yi)的距離為d
 則飛機(x,y)受到的風險為Pi(Ri-d/Ri)，若Ri<d則風險為0
-計算整張地圖(n+1)^2個格子點中總風險最大的點
-若有多個點，則選x較小的，x再相同則選y最小的
- 
+
+接著給定起點s(Xs,Ys)和終點t(Xt,Yt)
+
+決定一條成本最低的路徑
+並印出有k轉折點和所有轉折點(x1,y1)~(xk,yk)
+
 Given n, m, threatPoint[4][m]{ Xi,Yi,Pi,Ri }    //i 屬於 1 ~ m 
 for map(x,y)    //x,y範圍為0~n,0~n
     for threatPoint (1 ~ m)
