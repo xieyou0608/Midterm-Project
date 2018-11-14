@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+int function(int);
+
 int main() {
     int n = 0, m = 0, w = 0, d = 0;
     cin >> n >> m >> w >> d;
@@ -25,4 +27,10 @@ int main() {
     delete [] R;
     delete [] P;
     return 0;
+}
+
+int function(int a)
+{
+    
+    return 0 ;
 }
