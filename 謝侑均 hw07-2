@@ -1,0 +1,72 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+	int n = 0 , m = 0 , k = 0 ;
+	cin >> n >> m >> k ;
+	
+	double threatPoint[4 + 1][m + 1] = {0} ; 
+ 
+    for(int i = 1 ; i <= 4 ; i++)
+        for(int j = 1 ; j <= m ; j++)
+            cin >> threatPoint[i][j] ;
+	
+	double Xi , Yi , Ri , Pi , d ;
+
+	double lineVertex[k + 1][4 + 1] = {0} ;
+	
+	for(int a = 1 ; a <= k ; a++)
+		for(int b = 1 ; b <= 4 ; b++)
+			cin >> lineVertex[a][b] ;
+	
+	double minRiskLine = 0 , maxRiskLine = 0 ; 
+	double minRisk = 100000000 , maxRisk = 0 ; 
+    double Risk = 0 ;
+    
+    double xh = 0 , yh = 0 ;
+    double L = 0 ; //線的長度 
+    double x = 0 , y = 0 ;
+    
+    for(int a = 1 ; a <= k ; a++ )
+    {
+    	L = sqrt(pow((lineVertex[a][3] - lineVertex[a][1]) , 2) + pow((lineVertex[a][4] - lineVertex[a][2]) , 2)) ;
+    	xh = (lineVertex[a][3] - lineVertex[a][1]) / L ;
+    	yh = (lineVertex[a][4] - lineVertex[a][2]) / L ;
+    	
+		Risk = 0 ;
+		for(int t = 1 ; t < L ; t++)
+		{
+			x = lineVertex[a][1] + xh * t ;
+			y = lineVertex[a][2] + yh * t ;
+			for(int j = 1 ; j <= m ; j++)
+            {
+                Xi = threatPoint[1][j] ;
+                Yi = threatPoint[2][j] ;
+                Ri = threatPoint[3][j] ;
+                Pi = threatPoint[4][j] ;
+                d = sqrt( (Xi - x) * (Xi - x) + (Yi - y) * (Yi - y) ) ;
+                
+                if(Ri > d)	//點在風險範圍內才計算風險值 
+                Risk += Pi * (Ri - d) / Ri ;
+            }
+		}
+	
+		if(Risk < minRisk)
+		{
+			minRisk = Risk ;
+			minRiskLine = a ;
+		}
+		
+		if(Risk > maxRisk)
+		{
+			maxRisk = Risk ;
+			maxRiskLine = a ;
+		}
+	}
+    
+    cout << minRiskLine << " " << maxRiskLine ;
+	
+	return 0 ;	
+}
