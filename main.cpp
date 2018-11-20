@@ -7,7 +7,7 @@ int function(int);
 
 int main() {
     int n = 0, m = 0, w = 0, d = 0;
-    cin >> n >> m >> w >> d;
+    cin >> n >> m >> w >> d; //w為轉折權重,d為油料限制 
     int* X = new int [m];
     int* Y = new int [m];
     int* R = new int [m];
